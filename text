@@ -1,0 +1,6 @@
+      invoke  active_record
+      create    db/migrate/20171011200333_create_articles.rb
+      create    app/models/article.rb
+      invoke    test_unit
+      create      test/models/article_test.rb
+      create      test/fixtures/articles.yml

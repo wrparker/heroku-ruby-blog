@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+include Faker
+
+50.times do
+  Article.create(
+    title: 'REPORT: ' + Faker::Space.nebula + ' in ' + Faker::Space.galaxy,
+    body: Faker::Hipster.paragraphs(30, true),
+    author: Faker::LordOfTheRings.character,
+    location: Faker::LordOfTheRings.location
+  )
+end
