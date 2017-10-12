@@ -17,6 +17,31 @@
 
   <body>
     <div class='container'>
+      
+      <!--Alert Section.  As per bootstrap 3, flash with indicies:
+          success, info, warning, danger                        -->
+      
+      <!--For Devise -->    
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
+
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>">
+        <ul>
+        <% if flash[key].respond_to?('each') %>
+        <% flash[key].each do | msg | %>
+          <li><%= msg %></li>
+          <%end%>
+          <% else %>
+            <li><%= value %></li>
+          
+          <%end%>
+
+        </ul>
+        </div>
+        
+      <% end %>
       <%= yield %>
     </div>
     <!-- Latest compiled and minified JavaScript -->

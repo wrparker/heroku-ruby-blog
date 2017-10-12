@@ -1,6 +1,11 @@
 class ArticlesController < ApplicationController
+  
+  #lets investigate cancan...
+  before_action :authenticate_user!,
+    :only => [:destroy, :edit]
+  
   def index
-    @articles = Article.all
+    @articles = Article.order('id ASC').all
   end
   
   def show
@@ -8,6 +13,7 @@ class ArticlesController < ApplicationController
   end
   
   def edit
+    Devise:authenticate_user!
     @article = Article.find(params[:id])
   end
   
@@ -17,6 +23,7 @@ class ArticlesController < ApplicationController
       if @article.update(article_params)
         redirect_to @article
       else
+        flash[:danger] = @article.errors.full_messages
         render 'edit'
       end
   end
